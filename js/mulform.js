@@ -46,6 +46,7 @@
         this.createOptions();
         this.treatField();
         
+        //this.textInput();
         //console.log(this.elemArray);
         
     };
@@ -57,39 +58,45 @@
     */
     MulForm.prototype.treatField = function()
     {
-        $.each(this.elemArray, $.proxy(arrayHundler, this));
+        $.each(this.elemArray, $.proxy(arrayHandler, this));
         
-        // Array proxy hundler
-        function arrayHundler(key, elem) {
-            var element                             = $(elem);
+        // Array proxy handler
+        function arrayHandler(key, elem) {
             var elemType                            = null;
             
-            if (element.is('input')) {
-                elemType                            = element.attr('type');
+            // Create element Obj
+            this.element = {
+                tag: elem,
+                type: null,
+                data: null
+            };
+            
+            // Push {data} value
+            for (var i in $(elem).data()) {
+                this.element.data                   = $(elem).data();
+            };
+            
+            if ($(this.element.tag).is('input')) {
+                elemType                            = $(this.element.tag).attr('type');
+                this.element.type                   = elemType;
                 
                 switch (elemType) {
                     case 'text':
-                        console.log(elemType);
-                        break;
-                        
                     case 'email':
-                        console.log(elemType);
-                        break;
-                        
+                    case 'tel':
                     case 'password':
-                        console.log(elemType);
-                        break;
+                        this.textInput(); break;
                         
                     case 'file':
-                        console.log(elemType);
+                        //console.log(element);
                         break;
                         
                     case 'checkbox':
-                        console.log(elemType);
+                        //console.log(element);
                         break;
                         
                     case 'radio':
-                        console.log(elemType);
+                        //console.log(element);
                         break;
                 }
                 
@@ -98,12 +105,21 @@
             }
             
             
-            //console.log(elemType)
-            
         };
         
         
     };
+    
+    
+    /**
+    * Text input handler
+    */
+    MulForm.prototype.textInput = function(type)
+    {
+        console.log(this.element);
+        
+        
+    }
     
 
     /**
@@ -156,7 +172,10 @@
     MulForm.prototype.createOptions = function()
     {
         var options = {
-            test1: 'test'
+            test1: 'test',
+            expression: {
+                noneEmpty: /^$/,
+            }
         };
         this.options                                = $.extend(true, options, this.options, this.elem.data());
     }
