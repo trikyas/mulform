@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <!--link rel="icon" href="../../favicon.ico"-->
 
-    <title>Валидатор для DOC</title>
+    <title>Multy form hundler</title>
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -28,49 +28,48 @@
         <form>
          
           <div class="form-group">
-              <label for="exampleInputEmail1">Text</label>
-              <input type="text" class="form-control" placeholder="Email">
+              <label for="text">Text</label>
+              <input type="text" class="form-control" id="text" placeholder="Email">
           </div>
          
           <div class="form-group">
-              <label for="exampleInputEmail1">Email address</label>
-              <input type="email" class="form-control" placeholder="Email">
+              <label for="phone">Phone</label>
+              <input type="tel" class="form-control" id="phone" placeholder="Phone">
+          </div>
+         
+          <div class="form-group">
+              <label for="email">Email address</label>
+              <input type="email" class="form-control" id="email" placeholder="Email">
           </div>
           
           <div class="form-group">
-              <label for="exampleInputPassword1">Password</label>
-              <input type="password" class="form-control" placeholder="Password">
+              <label for="password">Password</label>
+              <input type="password" class="form-control" id="password" placeholder="Password">
           </div>
           
           <div class="form-group">
-              <label for="exampleInputFile">File input</label>
-              <input type="file">
-              <p class="help-block" class="form-control">Example block-level help text here.</p>
+              <label for="file">File input</label>
+              <input type="file" class="form-control" id="file">
+              <p class="help-block">Example block-level help text here.</p>
           </div>
           
           <div class="form-group">
-              <label for="exampleInputFile">Checkbox</label>
-              <input type="checkbox">
+              <label for="checkbox">Checkbox</label>
+              <input type="checkbox" id="checkbox">
           </div>
           
           <div class="form-group">
-              <label for="exampleInputFile">Radio</label>
-              <input type="radio">
+              <label for="radio">Radio</label>
+              <input type="radio" id="radio">
           </div>
           
           <div class="form-group">
-              <label for="exampleInputFile">Checkbox</label>
-              <select name="" id="" class="form-control">
+              <label for="select">Select</label>
+              <select class="form-control" id="select">
                   <option value="">Option 1</option>
                   <option value="">Option 2</option>
                   <option value="">Option 3</option>
               </select>
-          </div>
-          
-          <div class="checkbox">
-              <label>
-                  <input type="checkbox"> Check me out
-              </label>
           </div>
           
           <button type="submit" class="btn btn-default">Submit</button>
