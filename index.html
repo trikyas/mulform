@@ -29,43 +29,98 @@
          
           <div class="form-group">
               <label for="text">Text</label>
-              <input type="text" class="form-control" id="text" placeholder="Email" data-test-one="test-1" data-test-two="test-2">
+              <input 
+                     type="text"
+                     class="form-control" 
+                     id="text" 
+                     data-error="3" 
+                     placeholder="Text">
+          </div>
+         
+          <div class="form-group">
+              <label for="text-filter">Text simbol filter: @ $ # |</label>
+              <input
+                     type="text"
+                     class="form-control"
+                     id="text-filter"
+                     data-text-filter="@ $ # |"
+                     data-error="2" 
+                     data-error-text="Error! Error! Error!"
+                     placeholder="Text">
+          </div>
+         
+          <div class="form-group">
+              <label for="none-validator">None valid</label>
+              <input
+                     type="text"
+                     class="form-control"
+                     id="none-validator"
+                     placeholder="Text"
+                     data-validator="false">
           </div>
          
           <div class="form-group">
               <label for="phone">Phone</label>
-              <input type="tel" class="form-control" id="phone" placeholder="Phone">
-          </div>
-         
-          <div class="form-group">
-              <label for="search">Search</label>
-              <input type="search" class="form-control" id="search" placeholder="Phone">
+              <input
+                     type="tel"
+                     class="form-control"
+                     id="phone"
+                     placeholder="Phone"
+                     data-mask="+7 (___) ___-__-__"
+                     data-mask-simbol="_"
+                     required>
           </div>
          
           <div class="form-group">
               <label for="email">Email address</label>
-              <input type="email" class="form-control" id="email" placeholder="Email">
+              <input
+                     type="email"
+                     class="form-control"
+                     id="email"
+                     placeholder="Email">
           </div>
           
           <div class="form-group">
               <label for="password">Password</label>
-              <input type="password" class="form-control" id="password" placeholder="Password">
+              <input
+                     type="password"
+                     class="form-control"
+                     id="password"
+                     placeholder="Password">
           </div>
           
           <div class="form-group">
+              <label for="password">Return password</label>
+              <input
+                     type="password"
+                     class="form-control"
+                     id="password"
+                     placeholder="Password">
+          </div>
+          
+          
+          
+          <div class="form-group">
               <label for="file">File input</label>
-              <input type="file" class="form-control" id="file">
+              <input
+                     type="file"
+                     class="form-control"
+                     id="file">
               <p class="help-block">Example block-level help text here.</p>
           </div>
           
           <div class="form-group">
               <label for="checkbox">Checkbox</label>
-              <input type="checkbox" id="checkbox">
+              <input
+                     type="checkbox"
+                     id="checkbox">
           </div>
           
           <div class="form-group">
               <label for="radio">Radio</label>
-              <input type="radio" id="radio">
+              <input
+                     type="radio"
+                     id="radio">
           </div>
           
           <div class="form-group">

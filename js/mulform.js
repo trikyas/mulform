@@ -68,7 +68,8 @@
             this.element = {
                 tag: elem,
                 type: null,
-                data: null
+                data: null,
+                required: false
             };
             
             // Push {data} value
@@ -76,11 +77,15 @@
                 this.element.data                   = $(elem).data();
             };
             
+            // Check required field
+            if (!!$(this.element.tag).attr('required')) {
+                this.element.required               = true;
+            };
+            
             if ($(this.element.tag).is('input')) {
-                elemType                            = $(this.element.tag).attr('type');
-                this.element.type                   = elemType;
+                this.element.type                   = $(this.element.tag).attr('type');
                 
-                switch (elemType) {
+                switch ($(this.element.tag).attr('type')) {
                     case 'text':
                     case 'email':
                     case 'tel':
