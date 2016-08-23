@@ -31,8 +31,8 @@
     * Plugin constructor
     */
     function MulForm(form, options) {
-        this.elem                                   = $(form);
-        this.options                                = options;
+        this.elem    = $(form);
+        this.options = options;
         if (this.getElements())
             this.init();
     };
@@ -136,15 +136,15 @@
     MulForm.prototype.getElements = function()
     {
         // Input
-        this.inputs                                 = this.elem.find('input');
-        this.inputSum                               = this.inputs.length;
+        this.inputs    = this.elem.find('input');
+        this.inputSum  = this.inputs.length;
         
         // Select
-        this.selects                                = this.elem.find('select');
-        this.selectSum                              = this.selects.length;
+        this.selects   = this.elem.find('select');
+        this.selectSum = this.selects.length;
         
         // Create an array with elements
-        this.elemArray                              = [];
+        this.elemArray = [];
         
         // Adding input elements to array
         if (this.inputSum) {
@@ -182,7 +182,7 @@
                 noneEmpty: /^$/,
             }
         };
-        this.options                                = $.extend(true, options, this.options, this.elem.data());
+        this.options = $.extend(true, options, this.options, this.elem.data());
     }
     
     
