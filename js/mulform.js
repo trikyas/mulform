@@ -71,36 +71,18 @@
     */
     MulForm.prototype.treatField = function()
     {
+        
         $.each(this.elemArray, $.proxy(function(key, elem) {
-            var elemType = null;
+            //var elemType = null;
             
-            // Create element Obj
-            this.element = {
-                tag: elem,
-                type: null,
-                data: null,
-                required: false,
-            };
-            
-            // Push {data} value
-            for (var i in $(elem).data()) {
-                this.element.data     = $(elem).data();
-            };
-            
-            // Check required field
-            if (!!$(this.element.tag).attr('required')) {
-                this.element.required = true;
-            };
-            
-            if ($(this.element.tag).is('input')) {
-                this.element.type     = $(this.element.tag).attr('type');
+            if ($(elem).is('input')) {
                 
-                switch ($(this.element.tag).attr('type')) {
+                switch ($(elem).attr('type')) {
                     case 'text':
                     case 'email':
                     case 'tel':
                     case 'password':
-                        this.setInput(this.element.tag); break;
+                        this.setInput(elem); break;
                         
                     case 'file':
                         //console.log(element);
@@ -132,7 +114,26 @@
     {
         var inputVal = $(element)[0].value;
         
-        console.log(inputVal);
+        // Create element Obj
+        this.element = {
+            tag: element,
+            type: null,
+            data: null,
+            required: false,
+            val: null || inputVal
+        };
+            
+        // Push {data} value
+        for (var i in $(element).data()) {
+            this.element.data     = $(element).data();
+        };
+
+        // Check required field
+        if (!!$(this.element.tag).attr('required')) {
+            this.element.required = true;
+        };
+        
+        this.element.type         = $(this.element.tag).attr('type');
 
         this.inputOnChange = setInterval($.proxy(function () {
             if (inputVal != $(element)[0].value) {
@@ -140,12 +141,29 @@
                 return inputVal = $(element)[0].value;
             }
         }, this), 50);
-
+        
         this.reInit = function(element) {
             clearInterval(this.inputOnChange);
             this.setInput(element);
-        }
-    }
+        };
+        
+        this.router();
+    };
+    
+    
+    
+    /**
+    * Router
+    */
+    MulForm.prototype.router = function(value)
+    {
+        console.log(this.element.val);
+    };
+    
+    
+    
+    
+    
     
 
     /**
