@@ -58,10 +58,7 @@
     */
     MulForm.prototype.treatField = function()
     {
-        $.each(this.elemArray, $.proxy(arrayHandler, this));
-        
-        // Array proxy handler
-        function arrayHandler(key, elem) {
+        $.each(this.elemArray, $.proxy(function(key, elem) {
             var elemType                            = null;
             
             // Create element Obj
@@ -108,9 +105,7 @@
             } else {
                 console.log('DEV | this select')
             }
-            
-            
-        };
+        }, this));
         
         
     };
