@@ -5,7 +5,20 @@
         $('form').mulform({
             test: 'test-options'
         });
+        
+        
+        $('.btn.one').on('click', function(e) {
+            e.preventDefault();
+            $("#text").val('Message!')
+        });
+        
+        $('.btn.two').on('click', function(e) {
+            e.preventDefault();
+            $("#text").val('')
+        })
     });
+    
+    
     
 })(window, jQuery);
 
@@ -59,35 +72,35 @@
     MulForm.prototype.treatField = function()
     {
         $.each(this.elemArray, $.proxy(function(key, elem) {
-            var elemType                            = null;
+            var elemType = null;
             
             // Create element Obj
             this.element = {
                 tag: elem,
                 type: null,
                 data: null,
-                required: false
+                required: false,
             };
             
             // Push {data} value
             for (var i in $(elem).data()) {
-                this.element.data                   = $(elem).data();
+                this.element.data     = $(elem).data();
             };
             
             // Check required field
             if (!!$(this.element.tag).attr('required')) {
-                this.element.required               = true;
+                this.element.required = true;
             };
             
             if ($(this.element.tag).is('input')) {
-                this.element.type                   = $(this.element.tag).attr('type');
+                this.element.type     = $(this.element.tag).attr('type');
                 
                 switch ($(this.element.tag).attr('type')) {
                     case 'text':
                     case 'email':
                     case 'tel':
                     case 'password':
-                        this.textInput(); break;
+                        this.setInput(this.element.tag); break;
                         
                     case 'file':
                         //console.log(element);
@@ -111,14 +124,27 @@
     };
     
     
+    
     /**
-    * Text input handler
+    * Listen input function
     */
-    MulForm.prototype.textInput = function(type)
+    MulForm.prototype.setInput = function(element)
     {
-        console.log(this.element);
+        var inputVal = $(element)[0].value;
         
-        
+        console.log(inputVal);
+
+        this.inputOnChange = setInterval($.proxy(function () {
+            if (inputVal != $(element)[0].value) {
+                this.reInit(element);
+                return inputVal = $(element)[0].value;
+            }
+        }, this), 50);
+
+        this.reInit = function(element) {
+            clearInterval(this.inputOnChange);
+            this.setInput(element);
+        }
     }
     
 
