@@ -9,13 +9,23 @@
         
         $('.btn.one').on('click', function(e) {
             e.preventDefault();
-            $("#text").val('Message!')
+            $("#text").val('Message!');
+            
+            setTimeout(function() {
+                $("#text").val('')
+            }, 5000)
         });
         
         $('.btn.two').on('click', function(e) {
             e.preventDefault();
-            $("#text").val('')
-        })
+            $("#text").val('');
+            
+            
+            setTimeout(function() {
+                $("#text").val('New message!');
+            }, 5000)
+        });
+        
     });
     
     
@@ -73,36 +83,19 @@
     {
         
         $.each(this.elemArray, $.proxy(function(key, elem) {
-            //var elemType = null;
+            
+            
+            
+            this.setInput(elem);
             
             if ($(elem).is('input')) {
                 
-                switch ($(elem).attr('type')) {
-                    case 'text':
-                    case 'email':
-                    case 'tel':
-                    case 'password':
-                        this.setInput(elem); break;
-                        
-                    case 'file':
-                        //console.log(element);
-                        break;
-                        
-                    case 'checkbox':
-                        //console.log(element);
-                        break;
-                        
-                    case 'radio':
-                        //console.log(element);
-                        break;
-                }
-                
             } else {
-                console.log('DEV | this select')
+                
             }
+            
+            
         }, this));
-        
-        
     };
     
     
@@ -111,8 +104,12 @@
     * Listen input function
     */
     MulForm.prototype.setInput = function(element)
-    {
-        var inputVal = $(element)[0].value;
+    {        
+        var $inputVal = $(element)[0].value;
+        var $checked  = false;
+        
+        if ($(element).prop("checked") != undefined)
+            $checked  = $(element).prop("checked");
         
         // Create element Obj
         this.element = {
@@ -120,7 +117,8 @@
             type: null,
             data: null,
             required: false,
-            val: null || inputVal
+            val: $inputVal,
+            checked: $checked
         };
             
         // Push {data} value
@@ -133,12 +131,21 @@
             this.element.required = true;
         };
         
-        this.element.type         = $(this.element.tag).attr('type');
-
+        // Get type
+        if ($(this.element.tag).attr('type') != undefined)
+            this.element.type     = $(this.element.tag).attr('type');
+        else
+            this.element.type     = 'select';        
+        
+        // Input event
         this.inputOnChange = setInterval($.proxy(function () {
-            if (inputVal != $(element)[0].value) {
+            if ($inputVal != $(element)[0].value) {
                 this.reInit(element);
-                return inputVal = $(element)[0].value;
+                return $inputVal = $(element)[0].value;
+            }
+            if ($(element).prop("checked") != $checked && $(element).prop("checked") != undefined) {
+                this.reInit(element);
+                return $checked = $(element).prop("checked");
             }
         }, this), 50);
         
@@ -155,10 +162,13 @@
     /**
     * Router
     */
-    MulForm.prototype.router = function(value)
+    MulForm.prototype.router = function()
     {
-        console.log(this.element.val);
+        console.log(this.element.checked);
+        
     };
+    
+    
     
     
     
