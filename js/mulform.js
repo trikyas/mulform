@@ -122,27 +122,28 @@ MulForm.prototype.setInput = function(element)
     if ($(this.element.tag).attr('type') != undefined)
         this.element.type     = $(this.element.tag).attr('type');
     else
-        this.element.type     = 'select';        
-
+        this.element.type     = 'select';
+    
     // Input event
     this.inputOnChange = setInterval($.proxy(function () {
         
         if ($inputVal != $(element)[0].value) {
-            this.reInit(element);
+            this.inputOffChange(element);
             return $inputVal = $(element)[0].value;
         };
 
         if ($(element).prop("checked") != $checked && $(element).prop("checked") != undefined) {
-            this.reInit(element);
+            this.inputOffChange(element);
             return $checked = $(element).prop("checked");
-        };
-        
-        this.reInit = function(element) {
-            clearInterval($.proxy(this.inputOnChange, this));
-            this.setInput(element);
         };
 
     }, this), 50);
+    
+    this.inputOffChange = function(element) {
+        this.setInput(element);
+        clearInterval(this.inputOnChange);
+    }
+    
 
     this.router();
 };
