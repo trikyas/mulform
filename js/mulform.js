@@ -126,20 +126,23 @@ MulForm.prototype.setInput = function(element)
 
     // Input event
     this.inputOnChange = setInterval($.proxy(function () {
+        
         if ($inputVal != $(element)[0].value) {
             this.reInit(element);
             return $inputVal = $(element)[0].value;
-        }
+        };
+
         if ($(element).prop("checked") != $checked && $(element).prop("checked") != undefined) {
             this.reInit(element);
             return $checked = $(element).prop("checked");
-        }
-    }, this), 50);
+        };
+        
+        this.reInit = function(element) {
+            clearInterval($.proxy(this.inputOnChange, this));
+            this.setInput(element);
+        };
 
-    this.reInit = function(element) {
-        clearInterval(this.inputOnChange);
-        this.setInput(element);
-    };
+    }, this), 50);
 
     this.router();
 };
@@ -150,7 +153,7 @@ MulForm.prototype.setInput = function(element)
 */
 MulForm.prototype.router = function()
 {
-    console.log(this.element.checked);
+    console.log(this.element.val);
 
 };
 
