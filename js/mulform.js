@@ -175,15 +175,19 @@ MulForm.prototype.router = function()
 MulForm.prototype.getElements = function()
 {
     // Input
-    this.inputs    = this.elem.find('input');
-    this.inputSum  = this.inputs.length;
+    this.inputs      = this.elem.find('input');
+    this.inputSum    = this.inputs.length;
 
     // Select
-    this.selects   = this.elem.find('select');
-    this.selectSum = this.selects.length;
+    this.selects     = this.elem.find('select');
+    this.selectSum   = this.selects.length;
+
+    // Textarea
+    this.textareas   = this.elem.find('textarea');
+    this.textareaSum = this.textareas.length;
 
     // Create an array with elements
-    this.elemArray = [];
+    this.elemArray   = [];
 
     // Adding input elements to array
     if (this.inputSum) {
@@ -196,6 +200,13 @@ MulForm.prototype.getElements = function()
     if (this.selectSum) {
         for (var i = 0; i < this.selectSum; i++) {
             this.elemArray.push(this.selects[i])
+        }
+    };
+
+    // Adding textarea elements to array
+    if (this.textareaSum) {
+        for (var i = 0; i < this.textareaSum; i++) {
+            this.elemArray.push(this.textareas[i])
         }
     };
 
