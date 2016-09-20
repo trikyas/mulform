@@ -37,20 +37,23 @@
               <input 
                      type="text"
                      class="form-control" 
-                     id="text" 
-                     data-error="3" 
-                     placeholder="Text">
+                     id="text"
+                     data-error="3"
+                     placeholder="Text"
+                     required>
           </div>
          
          
-          <div class="form-group">
+          <div class="form-group test">
               <label for="text-test">Text test</label>
               <input 
                      type="text"
                      class="form-control" 
-                     id="text-test" 
-                     data-error="3" 
-                     placeholder="Text">
+                     id="text-test"
+                     data-validator="alphabet, email, phone"
+                     placeholder="Text"
+                     required>
+              
           </div>
          
           <div class="form-group">
@@ -71,8 +74,7 @@
                      type="text"
                      class="form-control"
                      id="none-validator"
-                     placeholder="Text"
-                     data-validator="false">
+                     placeholder="Text">
           </div>
          
           <div class="form-group">
@@ -93,7 +95,8 @@
                      type="email"
                      class="form-control"
                      id="email"
-                     placeholder="Email">
+                     placeholder="Email"
+                     required>
           </div>
           
           <div class="form-group">
